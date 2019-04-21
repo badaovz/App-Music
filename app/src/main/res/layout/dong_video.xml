@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:padding="5dp"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivthumbnail"
+        android:layout_width="120dp"
+        android:layout_height="90dp" />
+    <TextView
+        android:id="@+id/tvtenmv"
+        android:layout_toRightOf="@+id/ivthumbnail"
+        android:text="ten mv youtub"
+        android:maxLines="1"
+        android:maxWidth="550dp"
+        android:textColor="#232323"
+        android:layout_marginLeft="10dp"
+        android:textSize="24sp"
+        android:layout_marginTop="5dp"
+        android:ellipsize="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/tvchannel"
+        android:layout_toRightOf="@+id/ivthumbnail"
+        android:layout_below="@+id/tvtenmv"
+        android:text="ten channel"
+        android:maxLines="1"
+        android:maxWidth="550dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="16sp"
+        android:layout_marginTop="10dp"
+        android:ellipsize="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</RelativeLayout>
