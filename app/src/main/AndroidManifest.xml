@@ -12,8 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <!--<activity android:name=".Activity.MainActivity">-->
-        <activity android:name=".Activity.MainActivity" android:configChanges="orientation|screenSize">
+
+        <!-- <activity android:name=".Activity.MainActivity"> -->
+        <activity
+            android:name=".Activity.MainActivity"
+            android:configChanges="orientation|screenSize"
+            android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -27,8 +31,10 @@
         <activity android:name=".Activity.AllalbumActivity" />
         <activity android:name=".Activity.PlaymusicActivity" />
         <activity android:name=".Activity.PlayMvActivity">
-        <!--<activity android:name=".Activity.PlayMvActivity" android:screenOrientation="landscape">-->
+
+            <!-- <activity android:name=".Activity.PlayMvActivity" android:screenOrientation="landscape"> -->
         </activity>
+        <activity android:name=".Activity.SplashActivity"></activity>
     </application>
 
 </manifest>

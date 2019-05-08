@@ -131,6 +131,7 @@ public class PlaymusicActivity extends AppCompatActivity {
                         btrandom.setImageResource(R.drawable.iconsuffle);
                     }
                     btrepaeat.setImageResource(R.drawable.iconsyned);
+
                     repeat = true;
 
                 }else {
@@ -150,7 +151,8 @@ public class PlaymusicActivity extends AppCompatActivity {
                         btrepaeat.setImageResource(R.drawable.iconrepeat);
                     }
                     btrandom.setImageResource(R.drawable.iconshuffled);
-                    repeat = true;
+
+                    checkrandom = true;
 
                 }else {
                     btrandom.setImageResource(R.drawable.iconsuffle);

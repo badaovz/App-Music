@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     tools:context=".Activity.MainActivity">
 
-    <include layout="@layout/toolbar_layout"/>
+    <include layout="@layout/toolbar_layout" />
     <!--<android.support.design.widget.AppBarLayout-->
         <!--android:id="@+id/abltimkiem"-->
         <!--android:background="#74adea"-->

@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    <item android:title="Searchs"
+    <item android:title="Search"
         android:id="@+id/menu_searchm"
         android:icon="@drawable/icontimkiem"
         app:showAsAction="ifRoom|collapseActionView"

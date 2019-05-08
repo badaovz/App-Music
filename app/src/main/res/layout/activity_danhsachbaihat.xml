@@ -31,14 +31,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                />
+
             <android.support.v7.widget.Toolbar
                 android:id="@+id/tbbaihat"
-                android:elevation="6dp"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-                app:layout_collapseMode="pin"
                 android:layout_width="match_parent"
-                android:layout_height="75dp">
-            </android.support.v7.widget.Toolbar>
+                android:layout_height="75dp"
+                android:elevation="6dp"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"></android.support.v7.widget.Toolbar>
 
             <ImageView
                 android:id="@+id/ivbaihat"
@@ -73,12 +73,18 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/rcvbaihatdsqc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        android:id="@+id/rcvbaihatdsqc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         </android.support.v7.widget.RecyclerView>
-
     </android.support.v4.widget.NestedScrollView>
+
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/rcvbaihatdsqc"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+
+    <!--</android.support.v7.widget.RecyclerView>-->
 
 </android.support.design.widget.CoordinatorLayout>

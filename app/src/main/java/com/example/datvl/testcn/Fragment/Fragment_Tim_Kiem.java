@@ -54,8 +54,8 @@ public class Fragment_Tim_Kiem extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.search_view,menu);
-        MenuItem item = menu.findItem(R.id.menu_search);
+        inflater.inflate(R.menu.search_main,menu);
+        MenuItem item = menu.findItem(R.id.menu_searchm);
         final SearchView searchView = (SearchView) item.getActionView();
         searchView.setMaxWidth(Integer.MAX_VALUE);
 

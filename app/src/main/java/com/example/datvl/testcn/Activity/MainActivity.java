@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         anhxa();
         init();
 
-        toolbar.setTitle(" Search");
+        toolbar.setTitle(" Home");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setLogo(R.drawable.user);
@@ -44,12 +44,12 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menus) {
-        getMenuInflater().inflate(R.menu.search_main, menus);
-        return super.onCreateOptionsMenu(menus);
-    }
+//
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menus) {
+//        getMenuInflater().inflate(R.menu.search_main, menus);
+//        return super.onCreateOptionsMenu(menus);
+//    }
 
     private void init() {
         MainViewPagerAdapter mainViewPagerAdapter = new MainViewPagerAdapter(getSupportFragmentManager());

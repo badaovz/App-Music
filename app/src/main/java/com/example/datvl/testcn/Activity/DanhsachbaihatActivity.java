@@ -49,7 +49,7 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
     CoordinatorLayout coordinatorLayout;
     CollapsingToolbarLayout collapsingToolbarLayout;
     Toolbar toolbar;
-    RecyclerView recyclerView;
+    RecyclerView recyclerViewdsbh;
     FloatingActionButton floatingActionButton;
     ImageView imgdsbaihat;
     ArrayList<Baihat> mangbaihat;
@@ -100,8 +100,9 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
             public void onResponse(Call<List<Baihat>> call, Response<List<Baihat>> response) {
                 mangbaihat = (ArrayList<Baihat>) response.body();
                 danhsachbaihatAdapter = new DanhsachbaihatAdapter(DanhsachbaihatActivity.this,mangbaihat);
-                recyclerView.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
-                recyclerView.setAdapter(danhsachbaihatAdapter);
+                recyclerViewdsbh.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
+                recyclerViewdsbh.setAdapter(danhsachbaihatAdapter);
+//                danhsachbaihatAdapter.notifyDataSetChanged();
                 eventclick();
             }
 
@@ -121,8 +122,8 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
             public void onResponse(Call<List<Baihat>> call, Response<List<Baihat>> response) {
                 mangbaihat = (ArrayList<Baihat>) response.body();
                 danhsachbaihatAdapter = new DanhsachbaihatAdapter(DanhsachbaihatActivity.this,mangbaihat);
-                recyclerView.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
-                recyclerView.setAdapter(danhsachbaihatAdapter);
+                recyclerViewdsbh.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
+                recyclerViewdsbh.setAdapter(danhsachbaihatAdapter);
                 eventclick();
             }
 
@@ -142,8 +143,8 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
             public void onResponse(Call<List<Baihat>> call, Response<List<Baihat>> response) {
                 mangbaihat = (ArrayList<Baihat>) response.body();
                 danhsachbaihatAdapter = new DanhsachbaihatAdapter(DanhsachbaihatActivity.this,mangbaihat);
-                recyclerView.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
-                recyclerView.setAdapter(danhsachbaihatAdapter);
+                recyclerViewdsbh.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
+                recyclerViewdsbh.setAdapter(danhsachbaihatAdapter);
                 eventclick();
             }
 
@@ -163,8 +164,8 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
             public void onResponse(Call<List<Baihat>> call, Response<List<Baihat>> response) {
                 mangbaihat = (ArrayList<Baihat>) response.body();
                 danhsachbaihatAdapter = new DanhsachbaihatAdapter(DanhsachbaihatActivity.this,mangbaihat);
-                recyclerView.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
-                recyclerView.setAdapter(danhsachbaihatAdapter);
+                recyclerViewdsbh.setLayoutManager(new LinearLayoutManager(DanhsachbaihatActivity.this));
+                recyclerViewdsbh.setAdapter(danhsachbaihatAdapter);
                 eventclick();
             }
 
@@ -211,7 +212,7 @@ public class DanhsachbaihatActivity extends AppCompatActivity {
         coordinatorLayout = findViewById(R.id.clbaihat);
         collapsingToolbarLayout = findViewById(R.id.ctlbaihat);
         toolbar = findViewById(R.id.tbbaihat);
-        recyclerView = findViewById(R.id.rcvbaihatdsqc);
+        recyclerViewdsbh = findViewById(R.id.rcvbaihatdsqc);
         floatingActionButton = findViewById(R.id.fabbaihat);
         imgdsbaihat = findViewById(R.id.ivbaihat);
         floatingActionButton.setEnabled(false);
