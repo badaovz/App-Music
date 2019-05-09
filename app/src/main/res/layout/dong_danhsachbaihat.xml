@@ -52,6 +52,19 @@
             android:layout_marginRight="5dp"
             android:layout_width="30dp"
             android:layout_height="30dp" />
+        <TextView
+            android:id="@+id/tvluotthichdsbhs"
+            android:text="23"
+            android:textColor="#c1bfbf"
+            android:maxWidth="30dp"
+            android:maxLines="1"
+            android:layout_toLeftOf="@+id/iviconlovedsbhqc"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:textSize="16sp"
+            android:ellipsize="end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
 
     </RelativeLayout>

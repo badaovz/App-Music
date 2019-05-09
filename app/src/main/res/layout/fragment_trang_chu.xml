@@ -16,6 +16,11 @@
             <!--android:name="com.example.datvl.testcn.Fragment.Fragment_Tim_Kiem"-->
             <!--android:layout_width="match_parent"-->
             <!--android:layout_height="wrap_content"/>-->
+        <!--<fragment-->
+            <!--android:id="@+id/fmtimkiem"-->
+            <!--android:name="com.example.datvl.testcn.Fragment.Fragment_Tim_Kiem"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"/>-->
         <fragment
             android:id="@+id/myFragment"
             android:name="com.example.datvl.testcn.Fragment.Fragment_Banner"

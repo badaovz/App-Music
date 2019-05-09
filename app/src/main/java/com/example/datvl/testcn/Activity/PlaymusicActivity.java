@@ -12,8 +12,10 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.datvl.testcn.Adapter.Viewpager_Playmusic;
@@ -21,11 +23,18 @@ import com.example.datvl.testcn.Fragment.Fragment_Dianhac;
 import com.example.datvl.testcn.Fragment.Fragment_Playmusic;
 import com.example.datvl.testcn.Model.Baihat;
 import com.example.datvl.testcn.R;
+import com.example.datvl.testcn.Service.APIClient;
+import com.example.datvl.testcn.Service.RequestApi;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Random;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class PlaymusicActivity extends AppCompatActivity {
     Toolbar toolbarplaymusic;
@@ -43,6 +52,9 @@ public class PlaymusicActivity extends AppCompatActivity {
     boolean checkrandom = false;
     boolean nextbh = false;
 
+    boolean clickyeuthich = false;
+    ImageView yeuthich;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +64,9 @@ public class PlaymusicActivity extends AppCompatActivity {
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
         anhxa();
+
+
+
         Getintent();
         init();
         evenclick();
@@ -91,6 +106,81 @@ public class PlaymusicActivity extends AppCompatActivity {
     }
 
     private void evenclick() {
+
+        //
+
+        yeuthich.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (clickyeuthich == false) {
+                    yeuthich.setImageResource(R.drawable.iconloved);
+                    Toast.makeText(getApplicationContext(), "Đã thích", Toast.LENGTH_LONG).show();
+                    Retrofit retrofit = APIClient.getClient();
+                    RequestApi requestApi = retrofit.create(RequestApi.class);
+                    Call<String> callback = requestApi.Getupdateloutthich("1", mangbaihat.get(position).getIdbaihat());
+                    callback.enqueue(new Callback<String>() {
+                        @Override
+                        public void onResponse(Call<String> call, Response<String> response) {
+
+                            String kq = response.body();
+//                            Toast.makeText(PlaymusicActivity.this, "da thich", Toast.LENGTH_LONG).show();
+                            if (kq.equals("success!")) {
+                                //Toast.makeText(PlaymusicActivity.this, "da thich", Toast.LENGTH_LONG).show();
+                            } else {
+                                //Toast.makeText(PlaymusicActivity.this, "loi!!", Toast.LENGTH_LONG).show();
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<String> call, Throwable t) {
+
+                        }
+                    });
+                    //iconlove.setEnabled(false);
+                    //luotthich = Integer.parseInt(arrbaihatyt.get(getPosition()).getLuotthich()) + 1;
+                    //luotyeuthich.setText("" + luotthich);
+                    clickyeuthich = true;
+                }else {
+                    yeuthich.setImageResource(R.drawable.iconlove);
+                    Toast.makeText(PlaymusicActivity.this, "Bỏ thích", Toast.LENGTH_LONG).show();
+
+                    Retrofit retrofit = APIClient.getClient();
+                    RequestApi requestApi = retrofit.create(RequestApi.class);
+                    Call<String> callback = requestApi.Getupdateloutthich("-1", mangbaihat.get(position).getIdbaihat());
+                    callback.enqueue(new Callback<String>() {
+                        @Override
+                        public void onResponse(Call<String> call, Response<String> response) {
+
+                            String kq = response.body();
+                            //Toast.makeText(PlaymusicActivity.this, "da thich", Toast.LENGTH_LONG).show();
+                            if (kq.equals("success!")) {
+                               //Toast.makeText(PlaymusicActivity.this, "da thich", Toast.LENGTH_LONG).show();
+                            } else {
+                                //Toast.makeText(PlaymusicActivity.this, "loi!!", Toast.LENGTH_LONG).show();
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<String> call, Throwable t) {
+
+                        }
+                    });
+                    //iconlove.setEnabled(false);
+                    //luotthich = Integer.parseInt(arrbaihatyt.get(getPosition()).getLuotthich());
+                    //luotyeuthich.setText("" + luotthich);
+                    //luotyeuthich.setText(arrbaihatyt.get(getPosition()).getLuotthich());
+                    clickyeuthich = false;
+
+                }
+
+
+            }
+
+        });
+
+        //
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -300,16 +390,18 @@ public class PlaymusicActivity extends AppCompatActivity {
     }
 
     private void anhxa() {
-        toolbarplaymusic = findViewById(R.id.tbplaymusic);
-        timesong         = findViewById(R.id.tvtimebaihatplaymusic);
-        sumtimesong      = findViewById(R.id.tvsumtimebaihat);
-        sktime           = findViewById(R.id.sbbaihatplaymusic);
+        toolbarplaymusic   = findViewById(R.id.tbplaymusic);
+        timesong           = findViewById(R.id.tvtimebaihatplaymusic);
+        sumtimesong        = findViewById(R.id.tvsumtimebaihat);
+        sktime             = findViewById(R.id.sbbaihatplaymusic);
         btplay             = findViewById(R.id.ibpalyplaymusic);
         btrepaeat          = findViewById(R.id.ibrepeatplaymusic);
         btrandom           = findViewById(R.id.ibsuffleplaymusic);
         btnext             = findViewById(R.id.ibnextplaymusic);
         btpreview          = findViewById(R.id.ibpreviewplaymusic);
         viewPagerplaymusic = findViewById(R.id.vpplaymusic);
+
+        yeuthich           = findViewById(R.id.ivicyeuthichplayms);
 
 
     }

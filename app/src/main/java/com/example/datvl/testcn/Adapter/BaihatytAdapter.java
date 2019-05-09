@@ -27,6 +27,8 @@ import retrofit2.Retrofit;
 public class BaihatytAdapter extends RecyclerView.Adapter<BaihatytAdapter.ViewHolder>{
     Context context;
     ArrayList<Baihat> arrbaihatyt;
+    int luotthich=0;
+    boolean clickyeuthich = false;
 
     public BaihatytAdapter(Context context, ArrayList<Baihat> arrbaihatyt) {
         this.context = context;
@@ -43,6 +45,7 @@ public class BaihatytAdapter extends RecyclerView.Adapter<BaihatytAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Baihat baihat = arrbaihatyt.get(position);
+        holder.luotyeuthich.setText(baihat.getLuotthich());
 
         holder.tenbhyt.setText(baihat.getTenbaihat());
         holder.tencasibhyt.setText(baihat.getCasi());
@@ -56,7 +59,7 @@ public class BaihatytAdapter extends RecyclerView.Adapter<BaihatytAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView tenbhyt,tencasibhyt;
+        TextView tenbhyt,tencasibhyt,luotyeuthich;
         ImageView hinhbhyt,iconlove;
 
         public ViewHolder(View itemView) {
@@ -66,35 +69,78 @@ public class BaihatytAdapter extends RecyclerView.Adapter<BaihatytAdapter.ViewHo
             tencasibhyt = itemView.findViewById(R.id.tvcasibhyt);
             hinhbhyt = itemView.findViewById(R.id.ivhinhbhyt);
             iconlove = itemView.findViewById(R.id.ivicyeuthich);
+            luotyeuthich = itemView.findViewById(R.id.tvluotthichh);
 
             iconlove.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    iconlove.setImageResource(R.drawable.iconloved);
-                    Retrofit retrofit = APIClient.getClient();
-                    RequestApi requestApi = retrofit.create(RequestApi.class);
-                    Call<String> callback = requestApi.Getupdateloutthich("1", arrbaihatyt.get(getPosition()).getIdbaihat());
-                    callback.enqueue(new Callback<String>() {
-                        @Override
-                        public void onResponse(Call<String> call, Response<String> response) {
+                    if (clickyeuthich == false) {
+                        iconlove.setImageResource(R.drawable.iconloved);
 
-                            String kq = response.body();
-                            if(kq.equals("success!")){
-                                Toast.makeText(context,"da thich",Toast.LENGTH_LONG).show();
-                            }else {
-                                Toast.makeText(context,"loi!!",Toast.LENGTH_LONG).show();
+                        Retrofit retrofit = APIClient.getClient();
+                        RequestApi requestApi = retrofit.create(RequestApi.class);
+                        Call<String> callback = requestApi.Getupdateloutthich("1", arrbaihatyt.get(getPosition()).getIdbaihat());
+                        callback.enqueue(new Callback<String>() {
+                            @Override
+                            public void onResponse(Call<String> call, Response<String> response) {
+
+                                String kq = response.body();
+                                Toast.makeText(context, "da thich", Toast.LENGTH_LONG).show();
+                                if (kq.equals("Success")) {
+                                    Toast.makeText(context, "da thich", Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(context, "loi!!", Toast.LENGTH_LONG).show();
+                                }
+
                             }
 
-                        }
+                            @Override
+                            public void onFailure(Call<String> call, Throwable t) {
 
-                        @Override
-                        public void onFailure(Call<String> call, Throwable t) {
+                            }
+                        });
+                        //iconlove.setEnabled(false);
+                        luotthich = Integer.parseInt(arrbaihatyt.get(getPosition()).getLuotthich()) + 1;
+                        luotyeuthich.setText("" + luotthich);
+                        clickyeuthich = true;
+                    }else {
+                        iconlove.setImageResource(R.drawable.iconlove);
 
-                        }
-                    });
-                    iconlove.setEnabled(false);
+                        Retrofit retrofit = APIClient.getClient();
+                        RequestApi requestApi = retrofit.create(RequestApi.class);
+                        Call<String> callback = requestApi.Getupdateloutthich("-1", arrbaihatyt.get(getPosition()).getIdbaihat());
+                        callback.enqueue(new Callback<String>() {
+                            @Override
+                            public void onResponse(Call<String> call, Response<String> response) {
+
+                                String kq = response.body();
+                                //Toast.makeText(context, "da thich", Toast.LENGTH_LONG).show();
+                                if (kq.equals("success!")) {
+                                    Toast.makeText(context, "da thich", Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(context, "loi!!", Toast.LENGTH_LONG).show();
+                                }
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<String> call, Throwable t) {
+
+                            }
+                        });
+                        //iconlove.setEnabled(false);
+                        //luotthich = Integer.parseInt(arrbaihatyt.get(getPosition()).getLuotthich());
+                        //luotyeuthich.setText("" + luotthich);
+                        luotyeuthich.setText(arrbaihatyt.get(getPosition()).getLuotthich());
+                        clickyeuthich = false;
+
+                    }
+
+
                 }
+
             });
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

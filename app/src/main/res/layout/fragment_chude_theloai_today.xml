@@ -22,7 +22,7 @@
             android:text="xem thêm"
             android:textSize="18sp"
             android:layout_alignParentRight="true"
-            android:textColor="#ef8181"
+            android:textColor="#80cafc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </RelativeLayout>

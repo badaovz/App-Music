@@ -26,6 +26,8 @@ import retrofit2.Retrofit;
 public class DanhsachbaihatAdapter extends RecyclerView.Adapter<DanhsachbaihatAdapter.ViewHolder>{
     Context context;
     ArrayList<Baihat>  mangbaihat;
+    boolean clickyeuthich = false;
+    //int luotthich=0;
 
     public DanhsachbaihatAdapter(Context context, ArrayList<Baihat> mangbaihat) {
         this.context = context;
@@ -43,6 +45,7 @@ public class DanhsachbaihatAdapter extends RecyclerView.Adapter<DanhsachbaihatAd
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Baihat baihat = mangbaihat.get(position);
+        holder.luotyeuthichs.setText(baihat.getLuotthich());
         holder.tenbhdsbhqc.setText(baihat.getTenbaihat());
         holder.tencasidsbhqc.setText(baihat.getCasi());
         holder.thutudsbhqc.setText(position + 1 + "");
@@ -55,7 +58,7 @@ public class DanhsachbaihatAdapter extends RecyclerView.Adapter<DanhsachbaihatAd
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        TextView thutudsbhqc, tenbhdsbhqc, tencasidsbhqc;
+        TextView thutudsbhqc, tenbhdsbhqc, tencasidsbhqc, luotyeuthichs;
         ImageView iconlove;
 
         public ViewHolder(View itemView) {
@@ -65,33 +68,78 @@ public class DanhsachbaihatAdapter extends RecyclerView.Adapter<DanhsachbaihatAd
             tenbhdsbhqc   = itemView.findViewById(R.id.tvtenbhdsbhqc);
             tencasidsbhqc = itemView.findViewById(R.id.tvtencasibhdsbhqc);
             iconlove      = itemView.findViewById(R.id.iviconlovedsbhqc);
+            luotyeuthichs = itemView.findViewById(R.id.tvluotthichdsbhs);
 
             iconlove.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    iconlove.setImageResource(R.drawable.iconloved);
-                    Retrofit retrofit = APIClient.getClient();
-                    RequestApi requestApi = retrofit.create(RequestApi.class);
-                    Call<String> callback = requestApi.Getupdateloutthich("1", mangbaihat.get(getPosition()).getIdbaihat());
-                    callback.enqueue(new Callback<String>() {
-                        @Override
-                        public void onResponse(Call<String> call, Response<String> response) {
-                            String kq = response.body();
-                            if(kq.equals("success!")){
-                                Toast.makeText(context,"da thich",Toast.LENGTH_LONG).show();
-                            }else {
-                                Toast.makeText(context,"loi!!",Toast.LENGTH_LONG).show();
+
+                    int luotthich = 0;
+                    if (clickyeuthich == false) {
+                        iconlove.setImageResource(R.drawable.iconloved);
+
+                        Retrofit retrofit = APIClient.getClient();
+                        RequestApi requestApi = retrofit.create(RequestApi.class);
+                        Call<String> callback = requestApi.Getupdateloutthich("1", mangbaihat.get(getPosition()).getIdbaihat());
+                        callback.enqueue(new Callback<String>() {
+                            @Override
+                            public void onResponse(Call<String> call, Response<String> response) {
+
+                                String kq = response.body();
+                                Toast.makeText(context, "da thich", Toast.LENGTH_LONG).show();
+                                if (kq.equals("Success")) {
+                                    Toast.makeText(context, "da thich", Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(context, "loi!!", Toast.LENGTH_LONG).show();
+                                }
+
                             }
 
-                        }
+                            @Override
+                            public void onFailure(Call<String> call, Throwable t) {
 
-                        @Override
-                        public void onFailure(Call<String> call, Throwable t) {
+                            }
+                        });
+                        //iconlove.setEnabled(false);
+                        luotthich = Integer.parseInt(mangbaihat.get(getPosition()).getLuotthich()) + 1;
+                        luotyeuthichs.setText("" + luotthich);
+                        clickyeuthich = true;
+                    }else {
+                        iconlove.setImageResource(R.drawable.iconlove);
 
-                        }
-                    });
-                    iconlove.setEnabled(false);
+                        Retrofit retrofit = APIClient.getClient();
+                        RequestApi requestApi = retrofit.create(RequestApi.class);
+                        Call<String> callback = requestApi.Getupdateloutthich("-1", mangbaihat.get(getPosition()).getIdbaihat());
+                        callback.enqueue(new Callback<String>() {
+                            @Override
+                            public void onResponse(Call<String> call, Response<String> response) {
+
+                                String kq = response.body();
+                                Toast.makeText(context, "da thich", Toast.LENGTH_LONG).show();
+                                if (kq.equals("Success")) {
+                                    Toast.makeText(context, "da thich", Toast.LENGTH_LONG).show();
+                                } else {
+                                    Toast.makeText(context, "loi!!", Toast.LENGTH_LONG).show();
+                                }
+
+                            }
+
+                            @Override
+                            public void onFailure(Call<String> call, Throwable t) {
+
+                            }
+                        });
+                        //iconlove.setEnabled(false);
+                        //luotthich = Integer.parseInt(arrbaihatyt.get(getPosition()).getLuotthich());
+                        //luotyeuthich.setText("" + luotthich);
+                        luotyeuthichs.setText(mangbaihat.get(getPosition()).getLuotthich());
+                        clickyeuthich = false;
+
+                    }
+
+
                 }
+
             });
 
             itemView.setOnClickListener(new View.OnClickListener() {

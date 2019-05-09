@@ -6,7 +6,7 @@
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/abltimkiem"
-        android:background="#74adea"
+        android:background="#bcf0ff"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <android.support.v7.widget.Toolbar
